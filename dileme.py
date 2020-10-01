@@ -1,27 +1,33 @@
 import os
 import sys
-import datetime as dt
-import requests as req
+import datetime
+import requests
+import urllib.request
+import shutil
 
-urlBase = 'https://assets.dilemaveche.ro/'
-firstDate = dt.datetime(2020, 7, 14)
+from bs4 import BeautifulSoup
 
-path = './'
-numberOfFiles = 1
+urlBase = 'https://dilemaveche.ro/galerie/coperta-saptamanii?image='
 
 def downloadCovers(covers, path):
-    date = firstDate
     for i in range(covers):
-        formattedDate = date.strftime("%Y/%m/%d")
-        url = urlBase + formattedDate + '/01.jpg'
-        print(url)
-        
-        r = req.get(url, allow_redirects=True)
-        filename = 'Dilema Veche ' + date.strftime("%Y %m %d") + '.jpg'
+        index = i + 1
+        url = urlBase + str(index)
+        response = requests.get(url)
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        aas = soup.find_all("figure", class_='foto-large')
+
+        image_info = []
+        for a in aas:
+            image_tag = a.findChildren("img")
+            image_info.append(image_tag[0]["src"])
+
+        r = requests.get(image_info[0], allow_redirects=True)
+        filename = "Dilema Veche " + str(index) + ".jpg"
         open(path + filename, 'wb').write(r.content)
-        print("Saved "  + filename)
-        
-        date = date + dt.timedelta(weeks=1)
+        print("Saved " + filename)
+    print ("Finished " + covers + " items.")
 
 def main():
     path = sys.argv[1]
