@@ -1,5 +1,6 @@
-# dileme
-Simple Python program to scrape magazine covers
+# Dileme
+
+`dileme.py` is a simple Python program to scrape magazine covers using `BeautifulSoup`.
 
 ## Install requirements
 
