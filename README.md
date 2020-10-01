@@ -13,4 +13,4 @@ Simple Python program to scrape magazine covers
 
 - Recommended `path_to_directory` is `./arhiva/`, as this has already been added to `.gitignore`
 
-- There is no maximum `number_of_issues_to_save`, but saving more than the maximum may provide duplicates. Check `https://dilemaveche.ro/galerie/coperta-saptamanii` for the latest issue number.
+- There is no maximum `number_of_issues_to_save`, but saving more than the latest issue number may provide duplicates. Check `https://dilemaveche.ro/galerie/coperta-saptamanii` for the latest issue number.
