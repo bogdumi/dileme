@@ -2,8 +2,6 @@ import os
 import sys
 import datetime
 import requests
-import urllib.request
-import shutil
 
 from bs4 import BeautifulSoup
 
@@ -27,7 +25,7 @@ def downloadCovers(covers, path):
         filename = "Dilema Veche " + str(index) + ".jpg"
         open(path + filename, 'wb').write(r.content)
         print("Saved " + filename)
-    print ("Finished " + covers + " items.")
+    print ("Finished " + str(covers) + " item(s).")
 
 def main():
     path = sys.argv[1]
